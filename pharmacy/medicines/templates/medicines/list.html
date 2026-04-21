@@ -1,0 +1,106 @@
+{% extends 'medicines/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- 📂 Categories -->
+    <div class="categories">
+        <div class="cat">💊 أدوية</div>
+        <div class="cat">🧴 عناية بالبشرة</div>
+        <div class="cat">💇‍♂️ عناية بالشعر</div>
+    </div>
+
+    <!-- 🔍 Search -->
+    <div class="search-box">
+        <form method="GET" style="display:flex; justify-content:center; gap:10px;">
+            <input type="text" name="search" placeholder="🔍 ابحث عن دواء..." value="{{ request.GET.search }}">
+            <button type="submit">بحث</button>
+        </form>
+    </div>
+
+    <!-- 📂 Filter -->
+    <div class="filters">
+
+        <a href="/">
+            <button class="{% if not request.GET.category %}active{% endif %}">
+                All
+            </button>
+        </a>
+
+        <a href="/?category=Painkiller">
+            <button class="{% if request.GET.category == 'Painkiller' %}active{% endif %}">
+                Painkiller
+            </button>
+        </a>
+
+        <a href="/?category=Vitamins">
+            <button class="{% if request.GET.category == 'Vitamins' %}active{% endif %}">
+                Vitamins
+            </button>
+        </a>
+
+        <a href="/?category=Antibiotic">
+            <button class="{% if request.GET.category == 'Antibiotic' %}active{% endif %}">
+                Antibiotic
+            </button>
+        </a>
+
+    </div>
+
+    <h2 class="title">💊 كل الأدوية</h2>
+
+    <!-- 🔥 Products Grid -->
+    <div class="grid">
+
+    {% for m in medicines %}
+
+        <div class="card">
+
+            <!-- ❤️ Favourite -->
+            <a href="#" class="fav" 
+               onclick="toggleFav({{ m.id }}, this); return false;"
+               aria-label="Favourite">
+
+                {% if request.session.fav and m.id in request.session.fav %}
+                    ❤️
+                {% else %}
+                    🤍
+                {% endif %}
+
+            </a>
+
+            <!-- 🖼️ Image + Name -->
+            <a href="/medicine/{{ m.id }}/" class="product-link">
+                <img src="{{ m.image.url }}" alt="{{ m.name }}">
+                <h3>{{ m.name }}</h3>
+            </a>
+
+            <!-- 💰 Price -->
+            <p class="price">{{ m.price }} EGP</p>
+
+            <!-- 📂 Category -->
+            <p class="category">{{ m.category }}</p>
+
+            <!-- 🛒 Add to cart -->
+            <button class="btn" onclick="addToCart({{ m.id }})">
+                🛒 إضافة للكارت
+            </button>
+
+        </div>
+
+    {% empty %}
+
+        <div class="empty">
+            <h2>😢 مفيش منتجات</h2>
+            <p>جرب تدور بكلمة تانية</p>
+        </div>
+
+    {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

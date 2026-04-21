@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Pharmacy</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'medicines/css/style.css' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 🔥 خط احترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- 🔵 Top Bar -->
+<div class="top-bar">
+    🚚 توصيل سريع - اطلب الآن
+</div>
+
+<!-- 🔷 Navbar -->
+<div class="navbar">
+
+    <!-- 🧠 Logo -->
+    <div class="logo">
+        💊 Emad Pharmacy
+    </div>
+
+    <!-- 🔍 Search -->
+    <form method="GET" action="/" class="nav-search">
+        <input type="text" name="search" placeholder="🔍 ابحث عن دواء..." value="{{ request.GET.search }}">
+    </form>
+
+    <!-- 🛒 + ❤️ + 👤 -->
+    <div class="icons">
+
+        {% if request.user.is_authenticated %}
+            <span class="user">👤 {{ request.user.username }}</span>
+            <a href="/logout/">🚪</a>
+        {% else %}
+            <a href="/login/">🔑</a>
+        {% endif %}
+
+        <!-- 🛒 Cart -->
+        <a href="/cart/" style="position:relative;">
+            🛒
+            <span id="cart-count" class="badge">
+                {{ request.session.cart|length|default:0 }}
+            </span>
+        </a>
+
+        <!-- ❤️ Favourite -->
+        <a href="/favourite/" style="position:relative;">
+            ❤️
+            <span id="fav-count" class="badge">
+                {{ request.session.fav|length|default:0 }}
+            </span>
+        </a>
+
+    </div>
+
+</div>
+
+<!-- 🔽 محتوى الصفحات -->
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<!-- 📱 Bottom Navbar -->
+<div class="bottom-nav">
+    <a href="/">🏠<br>Home</a>
+    <a href="/favourite/">❤️<br>Fav</a>
+    <a href="/cart/">🛒<br>Cart</a>
+    <a href="#">👤<br>Profile</a>
+</div>
+
+<!-- 💬 WhatsApp -->
+<a href="https://wa.me/201229747061?text=عايز اطلب من الموقع" target="_blank" class="whatsapp-btn">
+    💬
+</a>
+
+<!-- 🌙 Dark Mode Button -->
+<button onclick="toggleDark()" id="darkBtn" style="
+    position: fixed;
+    bottom: 70px;
+    left: 20px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index:999;
+">
+    🌙
+</button>
+
+<!-- 🔥 Toast -->
+<div id="toast" style="
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#00bcd4;
+    color:white;
+    padding:15px 20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    display:none;
+    z-index:9999;
+    font-weight:bold;
+">
+    ✔️ تم إضافة المنتج للكارت
+</div>
+
+<!-- ================= JS ================= -->
+
+<script>
+// 🌙 Dark Mode
+function toggleDark() {
+    document.body.classList.toggle("dark");
+
+    const btn = document.getElementById("darkBtn");
+
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("mode", "dark");
+        btn.innerHTML = "☀️";
+    } else {
+        localStorage.setItem("mode", "light");
+        btn.innerHTML = "🌙";
+    }
+}
+
+// تحميل الحالة
+window.onload = function() {
+    const btn = document.getElementById("darkBtn");
+
+    if (localStorage.getItem("mode") === "dark") {
+        document.body.classList.add("dark");
+        btn.innerHTML = "☀️";
+    }
+}
+
+// ❤️ Favourite (AJAX)
+function toggleFav(id, el) {
+    fetch(`/fav/${id}/`)
+    .then(() => {
+        if (el.innerHTML.trim() === "🤍") {
+            el.innerHTML = "❤️";
+
+            let favCount = document.getElementById("fav-count");
+            let current = parseInt(favCount.innerText) || 0;
+            favCount.innerText = current + 1;
+
+        } else {
+            el.innerHTML = "🤍";
+
+            let favCount = document.getElementById("fav-count");
+            let current = parseInt(favCount.innerText) || 0;
+            favCount.innerText = Math.max(current - 1, 0);
+        }
+    });
+}
+
+// 🛒 Cart (AJAX + Counter + Toast)
+function addToCart(id) {
+    fetch(`/order/${id}`)
+    .then(() => {
+        showToast();
+
+        let cartCount = document.getElementById("cart-count");
+
+        let current = parseInt(cartCount.innerText) || 0;
+        cartCount.innerText = current + 1;
+    });
+}
+
+// 🔥 Toast
+function showToast() {
+    const toast = document.getElementById("toast");
+    toast.style.display = "block";
+
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
