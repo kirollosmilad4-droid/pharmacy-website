@@ -1,0 +1,417 @@
+/* 🔥 Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #f5f7fb;
+    direction: rtl;
+}
+
+/* 🔵 Top Bar */
+.top-bar {
+    background: linear-gradient(45deg, #f39c12, #f1c40f);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* 🔷 Navbar */
+.navbar {
+    background: linear-gradient(45deg, #00bcd4, #0097a7);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* 🔍 Search */
+.nav-search input {
+    padding: 8px 15px;
+    border-radius: 25px;
+    border: none;
+    width: 180px;
+    outline: none;
+}
+
+/* 🛒 Icons */
+.icons a {
+    font-size: 22px;
+    margin-left: 12px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.icons a:hover {
+    transform: scale(1.2);
+}
+
+/* 📦 Container */
+.container {
+    width: 92%;
+    margin: auto;
+}
+
+/* 📂 Categories */
+.categories {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.cat {
+    flex: 1;
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.cat:hover {
+    background: #00bcd4;
+    color: white;
+}
+
+/* 🔍 Search Box */
+.search-box {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.search-box input {
+    width: 60%;
+    padding: 12px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+.search-box button {
+    padding: 12px 15px;
+    background: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+/* 📂 Filters */
+.filters {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.filters button {
+    margin: 5px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    border: none;
+    background: #eee;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filters .active,
+.filters button:hover {
+    background: #00bcd4;
+    color: white;
+}
+
+/* 🏷️ Title */
+.title {
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* 🔥 GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* 🧾 Card */
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.02);
+}
+
+/* 🖼️ Image */
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+}
+
+/* ❤️ Fav */
+.fav {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+/* 🧠 Link */
+.product-link {
+    text-decoration: none;
+    color: black;
+}
+
+/* 💰 Price */
+.price {
+    color: #00bcd4;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* 📂 Category */
+.category {
+    font-size: 13px;
+    color: #777;
+}
+
+/* 🔘 Button */
+.btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(45deg, #00bcd4, #0097a7);
+    color: white;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* 😢 Empty */
+.empty {
+    text-align: center;
+    width: 100%;
+}
+
+/* 📱 Bottom Nav */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+.bottom-nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* 💬 WhatsApp */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    font-size: 22px;
+    padding: 14px;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* 🧱 Product Card */
+.product-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    width: 320px;
+    margin: 30px auto;
+}
+
+.product-card img {
+    width: 160px;
+    margin-bottom: 15px;
+}
+
+.product-card h2 {
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+/* 🧱 Buttons */
+.product-card button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.add-cart {
+    background: #00a8b5;
+    color: white;
+}
+
+.fav {
+    background: #ff4d4d;
+    color: white;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+
+    .nav-search input {
+        width: 120px;
+    }
+
+    .search-box input {
+        width: 80%;
+    }
+
+}
+
+/* 💻 Desktop */
+@media (min-width: 1024px) {
+
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+/* 🌙 Dark Mode */
+body.dark {
+    background: #121212;
+    color: #eee;
+}
+
+/* Navbar */
+body.dark .navbar {
+    background: #1f1f1f;
+}
+
+/* Cards */
+body.dark .card,
+body.dark .product-card,
+body.dark .cat {
+    background: #1e1e1e;
+    color: white;
+}
+
+/* Inputs */
+body.dark input {
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #444;
+}
+
+/* Buttons */
+body.dark .btn {
+    background: linear-gradient(45deg, #444, #222);
+}
+
+/* Bottom nav */
+body.dark .bottom-nav {
+    background: #1f1f1f;
+}
+
+/* 🌙 Smooth Transition */
+body, .card, .navbar, .product-card, .cat, .btn, input {
+    transition: all 0.3s ease;
+}
+
+/* 🌙 Dark Mode */
+body.dark {
+    background: #0f172a; /* كحلي شيك */
+    color: #e2e8f0;
+}
+
+/* Navbar */
+body.dark .navbar {
+    background: #020617;
+}
+
+/* Cards */
+body.dark .card,
+body.dark .product-card,
+body.dark .cat {
+    background: #1e293b;
+    color: #e2e8f0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+/* Text */
+body.dark .price {
+    color: #38bdf8;
+}
+
+body.dark .category {
+    color: #94a3b8;
+}
+
+/* Inputs */
+body.dark input {
+    background: #1e293b;
+    color: white;
+    border: 1px solid #334155;
+}
+
+/* Buttons */
+body.dark .btn {
+    background: linear-gradient(45deg, #0ea5e9, #0284c7);
+}
+
+/* Bottom nav */
+body.dark .bottom-nav {
+    background: #020617;
+}
+
+/* Glow effect 🔥 */
+body.dark .card:hover {
+    box-shadow: 0 0 20px rgba(56,189,248,0.3);
+}
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 50%;
+}

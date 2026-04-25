@@ -1,0 +1,53 @@
+{% extends 'medicines/base.html' %}
+
+{% block content %}
+
+<div style="max-width:500px; margin:auto; background:white; padding:25px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+
+    <h2 style="text-align:center; margin-bottom:20px;">💳 إتمام الطلب</h2>
+
+    {% if request.POST.payment == "vodafone" %}
+    <p style="color:green;">📱 حول الفلوس على الرقم: 010XXXXXXXX</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="name" placeholder="👤 الاسم" required
+        style="width:100%; padding:12px; margin-bottom:10px; border-radius:10px; border:1px solid #ccc;">
+
+        <input type="text" name="phone" placeholder="📞 رقم الموبايل" required
+        style="width:100%; padding:12px; margin-bottom:10px; border-radius:10px; border:1px solid #ccc;">
+
+        <textarea name="address" placeholder="📍 العنوان" required
+        style="width:100%; padding:12px; margin-bottom:15px; border-radius:10px; border:1px solid #ccc;"></textarea>
+
+        <button type="submit" style="
+            width:100%;
+            padding:12px;
+            background:#00bcd4;
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-size:16px;
+            cursor:pointer;
+        ">
+            ✅ تأكيد الطلب
+        </button>
+
+    </form>
+
+    <select name="payment" style="width:100%; padding:10px; margin-bottom:10px;">
+        <option value="cash">💵 الدفع عند الاستلام</option>
+        <option value="vodafone">📱 فودافون كاش</option>
+    </select>
+    <select name="payment_method" required
+    style="width:100%; padding:12px; margin-bottom:10px;">
+        <option value="">اختر طريقة الدفع</option>
+        <option value="cash">💵 كاش</option>
+        <option value="card">💳 كارت</option>
+    </select>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'medicines/base.html' %}
+
+{% block content %}
+
+<h1 style="text-align:center;">📦 طلباتي</h1>
+
+{% if orders %}
+
+    {% for order in orders %}
+    
+    <div style="
+        background:white;
+        padding:20px;
+        margin:15px;
+        border-radius:15px;
+        box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    ">
+        
+        <p><b>👤 الاسم:</b> {{ order.name }}</p>
+        <p><b>📞 الهاتف:</b> {{ order.phone }}</p>
+        <p><b>📍 العنوان:</b> {{ order.address }}</p>
+
+        <p><b>💰 الإجمالي:</b> {{ order.total_price }} EGP</p>
+        <p><b>📅 التاريخ:</b> {{ order.created_at }}</p>
+
+        <p>
+            <b>📦 الحالة:</b> 
+            <span style="color:green;">{{ order.status }}</span>
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <div style="text-align:center; margin-top:50px;">
+        <h2>😢 مفيش طلبات لسه</h2>
+        <a href="/">🛍️ ابدأ التسوق</a>
+    </div>
+
+{% endif %}
+
+{% endblock %}

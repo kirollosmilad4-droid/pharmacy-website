@@ -1,0 +1,31 @@
+{% extends 'medicines/base.html' %}
+
+{% block content %}
+
+<h1>❤️ المفضلة</h1>
+
+<div class="grid">
+
+{% for m in medicines %}
+
+<div class="card">
+    <img src="{{ m.image.url }}" width="150">
+
+    <h2>{{ m.name }}</h2>
+    <p>💰 {{ m.price }} EGP</p>
+
+    <a href="/order/{{ m.id }}">
+        <button>🛒 Add to Cart</button>
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>❌ لا يوجد منتجات في المفضلة</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
