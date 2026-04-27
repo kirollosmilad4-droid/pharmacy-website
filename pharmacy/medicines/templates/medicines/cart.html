@@ -1,0 +1,38 @@
+<h1>🛒 Your Cart</h1>
+
+{% for item in cart_items %}
+
+<div class="card">
+
+    {% if item.medicine.image %}
+        <img src="{{ item.medicine.image.url }}">
+    {% endif %}
+
+    <h2>{{ item.medicine.name }}</h2>
+
+    <p>Price: {{ item.medicine.price }} EGP</p>
+    <p>Quantity: {{ item.quantity }}</p>
+
+    <p>Total: {{ item.medicine.price|floatformat:2 }} × {{ item.quantity }} = {{ item.medicine.price|floatformat:2|add:"0"|floatformat }}</p>
+
+    <a href="/remove/{{ item.medicine.id }}">
+        <button>❌ Remove</button>
+    </a>
+
+</div>
+
+{% endfor %}
+
+<hr>
+
+<h2>💰 Total Price: {{ total }} EGP</h2>
+
+<a href="/clear/">
+    <button>🗑️ Clear Cart</button>
+</a>
+
+<!-- ✅ زرار checkout واحد بس تحت -->
+<a href="/checkout/" 
+style="display:block; text-align:center; margin-top:20px; background:green; color:white; padding:12px; border-radius:10px;">
+    🧾 اتمام الطلب
+</a>

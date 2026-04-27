@@ -1,0 +1,60 @@
+{% extends 'medicines/base.html' %}
+
+{% block content %}
+
+<div class="product-card">
+    <!-- 🖼️ صورة -->
+    <div style="text-align:center;">
+        <img src="{{ medicine.image.url }}" style="width:200px;">
+    </div>
+
+    <!-- 📝 معلومات -->
+    <h2 style="text-align:center;">{{ medicine.name }}</h2>
+
+    <p style="text-align:center; font-size:18px; color:#00bcd4;">
+        💰 {{ medicine.price }} EGP
+    </p>
+
+    <p style="text-align:center;">
+        📂 {{ medicine.category }}
+    </p>
+
+    <!-- 🔘 Buttons -->
+    <div style="margin-top:20px; text-align:center;">
+
+        <a href="/order/{{ medicine.id }}">
+            <button style="width:200px;">🛒 Add to Cart</button>
+        </a>
+
+        <br><br>
+
+        <a href="/fav/{{ medicine.id }}">
+            <button style="width:200px; background:#e74c3c;">
+                ❤️ Favourite
+            </button>
+        </a>
+
+    </div>
+
+</div>
+
+<!-- 🔥 Related Products -->
+<h2 style="margin-top:30px;">🔥 منتجات مشابهة</h2>
+
+<div class="grid">
+
+{% for m in related %}
+
+<div class="card">
+    <a href="/medicine/{{ m.id }}/" style="text-decoration:none; color:black;">
+        <img src="{{ m.image.url }}">
+        <h3>{{ m.name }}</h3>
+        <p>{{ m.price }} EGP</p>
+    </a>
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
